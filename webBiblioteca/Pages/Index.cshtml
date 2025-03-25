@@ -1,0 +1,116 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <div class="container mt-5">
+        <h2 class="mb-4">Lista de Alquileres</h2>
+        <button class="btn btn-primary mb-3" onclick="abrirModal()">Agregar Alquiler</button>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>ID Usuario</th>
+                    <th>Usuario</th>
+                    <th>ID Libro</th>
+                    <th>Titulo</th>
+                    <th>Fecha de Alquiler</th>
+                    <th>Fecha de Devolución</th>
+                    <th>Estado</th>
+                    <th>Penalidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="alquileresTable"></tbody>
+        </table>
+    </div>
+
+    <!-- Modal para agregar alquiler -->
+    <div id="modalAlquiler" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar Alquiler</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label>ID Usuario:</label>
+                    <input type="number" id="idUsuario" class="form-control">
+                    <label>ID Libro:</label>
+                    <select id="idLibro" class="form-control">
+                        <option value="">Selecciona un libro</option>
+                    </select>
+                    <label>Fecha de Alquiler:</label>
+                    <input type="date" id="fechaAlquiler" class="form-control">
+                    <label>Fecha de Devolución:</label>
+                    <input type="date" id="fechaDevolucion" class="form-control">
+                    <label>Estado:</label>                   
+                    <select id="estado" class="form-control">
+                        <option value="Disponible">Disponible</option>
+                        <option value="Alquilado">Alquilado</option>
+                    </select>
+                    <label>Penalidad:</label>
+                    <input type="number" id="penalidad" class="form-control" step="0.01">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="guardarAlquiler()">Guardar</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar alquiler -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Alquiler</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editId">
+                    <div class="mb-3">
+                        <label>ID Usuario</label>
+                        <input type="number" id="editIdUsuario" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label>ID Libro</label>
+                        <select id="editIdLibro" class="form-control">
+                            <option value="">Selecciona un libro</option>
+                        </select>
+                   
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Fecha de Alquiler</label>
+                        <input type="date" id="editFechaAlquiler" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label>Fecha de Devolución</label>
+                        <input type="date" id="editFechaDevolucion" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label>Estado</label>                        
+                        <select id="editEstado" class="form-control">
+                            <option value="">Selecciona un estado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Alquilado">Alquilado</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Penalidad</label>
+                        <input type="number" id="editPenalidad" class="form-control" step="0.01">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="guardarEdicion()">Guardar</button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</div>
