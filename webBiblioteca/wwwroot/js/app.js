@@ -39,7 +39,7 @@ async function obtenerAlquileres() {
 }
 
 async function guardarAlquiler() {
-    debugger
+
     var url = apiUrl + endPointCreate;
     const ID_Usuario = parseInt(document.getElementById("idUsuario").value);
     const ID_Libro = parseInt(document.getElementById("idLibro").value);
@@ -146,7 +146,7 @@ async function cargarLibros() {
     const libros = await response.json();
 
     const selectLibro = document.getElementById("idLibro");
-    debugger
+   
     libros.forEach(libro => {
         const option = document.createElement("option");
         option.value = libro.iD_Libro;     // o libro.iD_Libro si viene así
